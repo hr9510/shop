@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000";
+const BASE = "https://shop-backend-l9z3.onrender.com/";
 
 export async function api(path, options = {}) {
 
