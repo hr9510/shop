@@ -24,7 +24,7 @@ export default function Page() {
   // LOAD PRODUCTS
   const loadProducts = async () => {
     try {
-      const data = await api("/get_product", {credential : "include"});
+      const data = await api("/get_product");
       setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
       console.log(error);

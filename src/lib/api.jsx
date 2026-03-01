@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000";
+const BASE = "https://shop-backend-l9z3.onrender.com/";
 
 export async function api(path, options = {}) {
 
@@ -11,29 +11,28 @@ export async function api(path, options = {}) {
     body: options.body
   });
 
-  // try refresh
-  // if (res.status === 401) {
-  //   const refresh = await fetch(BASE + "/refresh", {
-  //     method: "POST",
-  //     credentials: "include"
-  //   });
+  if (res.status === 401) {
+    const refresh = await fetch(BASE + "/refresh", {
+      method: "GET",
+      credentials: "include"
+    });
 
-  //   if (refresh.ok) {
-  //     const retry = await fetch(BASE + path, {
-  //       method: options.method || "GET",
-  //       credentials: "include",
-  //       headers: options.body
-  //         ? { "Content-Type": "application/json", ...(options.headers || {}) }
-  //         : options.headers,
-  //       body: options.body
-  //     });
+    if (refresh.ok) {
+      const retry = await fetch(BASE + path, {
+        method: options.method || "GET",
+        credentials: "include",
+        headers: options.body
+          ? { "Content-Type": "application/json", ...(options.headers || {}) }
+          : options.headers,
+        body: options.body
+      });
 
-  //     if (!retry.ok) throw new Error("Session expired");
-  //     return retry.json();
-  //   }
+      if (!retry.ok) throw new Error("Session expired");
+      return retry.json();
+    }
 
-  //   throw new Error("Login again");
-  // }
+    throw new Error("Login again");
+  }
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({ message: "Server error" }));
