@@ -28,8 +28,12 @@ export default function Page() {
 
   useEffect(() => {
   const load = async () => {
-    const data = await api("/get_product")
-    setProducts(Array.isArray(data) ? data : []);
+    const data = await fetch("http://localhost:5000/get_product", {
+      method: "GET",
+      credentials: "include"
+    });
+    let res = await data.json();
+    setProducts(Array.isArray(res) ? res : []);
     setLoading(false);
   };
   load();
