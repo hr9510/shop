@@ -3,8 +3,8 @@ const BASE = "http://localhost:5000";
 export async function api(path, options = {}) {
 
   const res = await fetch(BASE + path, {
-    method: options.method || "GET",
     credentials: "include",
+    method: options.method || "GET",
     headers: options.body
       ? { "Content-Type": "application/json", ...(options.headers || {}) }
       : options.headers,
