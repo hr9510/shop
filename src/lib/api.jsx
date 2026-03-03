@@ -1,10 +1,9 @@
 const BASE = "https://shop-backend-l9z3.onrender.com/";
-
 export async function api(path, options = {}) {
 
   const res = await fetch(BASE + path, {
-    method: options.method || "GET",
     credentials: "include",
+    method: options.method || "GET",
     headers: options.body
       ? { "Content-Type": "application/json", ...(options.headers || {}) }
       : options.headers,
