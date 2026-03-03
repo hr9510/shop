@@ -28,12 +28,12 @@ export default function Page() {
 
   useEffect(() => {
   const load = async () => {
-    const data = await fetch("http://localhost:5000/get_product", {
+    const data = await fetch("https://shop-backend-l9z3.onrender.com/get_product", {
       credentials: 'include',
       method: "GET"
     });
     let res = await data.json();
-    setProducts(Array.isArray(res) ? res : []);
+    setProducts(Array.isArray(res) ? res.reverse() : []);
     setLoading(false);
   };
   load();
