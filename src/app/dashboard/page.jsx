@@ -25,7 +25,7 @@ export default function Page() {
     });
   }, [products, search, brand, category]);
 
-  useEffect(() => {
+ useEffect(() => {
   const load = async () => {
     try {
       const response = await fetch(
@@ -39,7 +39,6 @@ export default function Page() {
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }
-
       const res = await response.json();
       setProducts(Array.isArray(res) ? [...res].reverse() : []);
     } catch (err) {
