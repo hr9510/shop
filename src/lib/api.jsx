@@ -37,6 +37,6 @@ export async function api(path, options = {}) {
     const data = await res.json().catch(() => ({ message: "Server error" }));
     throw new Error(data.message || data.msg || "Server error");
   }
-
-  return res.json().reverse();
+let finalRes = res.json()
+  return finalRes.reverse();
 }
