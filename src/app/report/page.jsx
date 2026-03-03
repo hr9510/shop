@@ -17,9 +17,9 @@ export default function Report() {
       const o = await api("/get_other_manages");
       const p = await api("/get_product");
 
-      setSales(Array.isArray(s) ? s : []);
-      setOthers(Array.isArray(o) ? o : []);
-      setProducts(Array.isArray(p) ? p : []);
+      setSales(Array.isArray(s) ? [...s].reverse() : []);
+      setOthers(Array.isArray(o) ? [...o].reverse() : []);
+      setProducts(Array.isArray(p) ? [...p].reverse() : []);
 
     } catch (error) {
       console.log(error);

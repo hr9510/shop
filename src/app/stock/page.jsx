@@ -25,8 +25,8 @@ export default function Page() {
     try {
       const prod = await api("/get_product");
       const st = await api("/get_stock");
-      setProducts(Array.isArray(prod) ? prod : []);
-setStock(Array.isArray(st) ? st : []);
+      setProducts(Array.isArray(prod) ? [...prod].reverse() : []);
+      setStock(Array.isArray(st) ? [...st].reverse() : []);
     } catch (error) {
       console.log(error)
     }
@@ -38,8 +38,8 @@ useEffect(() => {
       const prod = await api("/get_product");
       const st = await api("/get_stock");
 
-      setProducts(Array.isArray(prod) ? prod : []);
-      setStock(Array.isArray(st) ? st : []);
+      setProducts(Array.isArray(prod) ? [...prod].reverse() : []);
+      setStock(Array.isArray(st) ? [...st].reverse() : []);
 
     } catch (error) {
       console.log(error);

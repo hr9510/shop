@@ -25,8 +25,8 @@ export default function Page() {
     try {
       const prod = await api("/get_product");
       const sale = await api("/get_sale");
-      setProducts(prod);
-      setSales(Array.isArray(sale) ? sale : []);
+      setProducts(Array.isArray(prod) ? [...prod].reverse() : []);
+      setSales(Array.isArray(sale) ? [...sale].reverse() : []);
     } catch (error) {
       console.log(error);
     }
@@ -39,8 +39,8 @@ export default function Page() {
       const prod = await api("/get_product");
       const sale = await api("/get_sale");
 
-      setProducts(Array.isArray(prod) ? prod : []);
-      setSales(Array.isArray(sale) ? sale : []);
+      setProducts(Array.isArray(prod) ? [...prod].reverse() : []);
+      setSales(Array.isArray(sale) ? [...sale].reverse() : []);
 
     } catch (error) {
       console.log(error);

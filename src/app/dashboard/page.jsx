@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
-import { api } from "@/lib/api";
 import Header from "@/components/Header";
 
 export default function Page() {
@@ -28,14 +27,29 @@ export default function Page() {
 
   useEffect(() => {
   const load = async () => {
-    const data = await fetch("https://shop-backend-l9z3.onrender.com/get_product", {
-      credentials: 'include',
-      method: "GET"
-    });
-    let res = await data.json();
-    setProducts(Array.isArray(res) ? res.reverse() : []);
-    setLoading(false);
+    try {
+      const response = await fetch(
+        "https://shop-backend-l9z3.onrender.com/get_product",
+        {
+          credentials: "include",
+          method: "GET"
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+
+      const res = await response.json();
+      setProducts(Array.isArray(res) ? [...res].reverse() : []);
+    } catch (err) {
+      console.error(err);
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
   };
+
   load();
 }, []);
 

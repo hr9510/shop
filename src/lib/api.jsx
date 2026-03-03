@@ -38,5 +38,5 @@ export async function api(path, options = {}) {
     throw new Error(data.message || data.msg || "Server error");
   }
 
-  return res.json().reverse();
+  return res.json();
 }

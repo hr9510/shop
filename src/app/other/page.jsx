@@ -24,7 +24,7 @@ export default function Page() {
   const loadData = async () => {
     try {
       const data = await api("/get_other_manages");
-      setRecords(Array.isArray(data) ? data : []);
+      setRecords(Array.isArray(data) ? [...data].reverse() : []);
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +35,7 @@ useEffect(() => {
   const init = async () => {
     try {
       const data = await api("/get_other_manages");
-      setRecords(Array.isArray(data) ? data : []);
+      setRecords(Array.isArray(data) ? [...data].reverse() : []);
 
     } catch (error) {
       console.log(error);

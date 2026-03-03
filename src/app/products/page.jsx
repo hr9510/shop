@@ -25,7 +25,7 @@ export default function Page() {
   const loadProducts = async () => {
     try {
       const data = await api("/get_product");
-      setProducts(Array.isArray(data) ? data : []);
+      setProducts(Array.isArray(data) ? [...data].reverse() : []);
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +36,7 @@ useEffect(() => {
   const init = async () => {
     try {
       const data = await api("/get_product");
-      setProducts(Array.isArray(data) ? data : []);
+      setProducts(Array.isArray(data) ? [...data].reverse() : []);
 
     } catch (error) {
       console.log(error);
